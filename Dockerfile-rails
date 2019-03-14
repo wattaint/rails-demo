@@ -1,16 +1,22 @@
 FROM ruby:2.6.1-slim-stretch
 
 RUN apt-get update && apt-get -y install \
+  curl \
   gcc \
   liblzma-dev \
   libsqlite3-dev \
   make \
   patch \
+  wget \
   zlib1g-dev \
   && apt-get clean && \
   rm -r /var/lib/apt/lists/*
 
-
+RUN wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.gz -O /nodejs.tar.gz &&\
+  tar -xf /nodejs.tar.gz &&\
+  rm -f /nodejs.tar.gz 
+  
+ENV PATH /node-v10.15.3-linux-x64/bin:$PATH
 COPY Gemfile Gemfile.lock /
 RUN bundle install
 
