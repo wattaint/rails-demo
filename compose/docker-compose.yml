@@ -1,0 +1,19 @@
+version: "3"
+services:
+  rails:
+    image: rails-demo--rails
+    build: 
+      context: ../rails
+      dockerfile: ../Dockerfile-rails
+    network_mode: bridge
+    tmpfs:
+      - /rails/tmp/pids
+    volumes:
+      - rails_data:/data
+      - rails_log:/rails/log
+      - rails_tmp:/rails/tmp
+
+volumes:
+  rails_data: {}
+  rails_log: {}
+  rails_tmp: {}
