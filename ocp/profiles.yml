@@ -12,4 +12,9 @@ equator_dataplatform:
     
   qa:
     <<: *equator_dataplatform_default
-  
+
+dataplatform:
+  dev:
+    namespacePrefix: dataplatform
+    image: us.gcr.io/dataplatform-1363/acm-dp--ocp--rails-demo--dev
+    rails_host: rails--dataplatform-<%- envTier %>.cicd.ascendmoney-dev.internal

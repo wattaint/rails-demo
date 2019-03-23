@@ -1,0 +1,5 @@
+version: "2.1"
+services:
+  rails1:
+    extends: rails
+    image: us.gcr.io/tmn-th-equator-ci/acm-dp--ocp--rails-demo--dev

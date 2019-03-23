@@ -1,7 +1,7 @@
-version: "3"
+version: "2.1"
 services:
   rails:
-    image: ${IMAGE:-rails-demo--rails}
+    image: us.gcr.io/dataplatform-1363/acm-dp--ocp--rails-demo--dev
     build: 
       context: ../rails
       dockerfile: ../Dockerfile-rails
