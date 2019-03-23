@@ -2,8 +2,8 @@ version: "3"
 services:
   rails:
     ports:
-      - 3001:3001
+      - 3002:3002
     command: rails s -b 0.0.0.0
     environment: 
-      PORT: 3001
+      PORT: 3002
       RAILS_ENV: production

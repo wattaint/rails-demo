@@ -1,0 +1,10 @@
+_eq_th_non_prod_default: &eq_th_non_prod_default
+  namespacePrefix: equator-dataplatform
+  image: us.gcr.io/tmn-th-equator-ci/acm-dp-rails-demo--dev
+
+eq_th_non_prod:
+  staging: 
+    <<: *eq_th_non_prod_default
+    
+  qa:
+    <<: *eq_th_non_prod_default

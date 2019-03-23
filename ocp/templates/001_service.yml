@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  rails-http
+  namespace: <%- namespacePrefix %>-<%- envTier %>
+spec:
+  selector:
+    app:  rails
+  type:  ClusterIP
+  ports:
+  - name:  rails-http
+    port:  80
+    targetPort:  3000

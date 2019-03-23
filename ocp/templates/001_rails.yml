@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: rails
+  namespace: <%- namespacePrefix %>-<%- envTier %>
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        editor: vscode
+    spec:
+      containers:
+      - name: rails
+        image: <%- image %>
+        imagePullPolicy: Always
+        env:
+        - name: RAILS_ENV
+          value: development
+        livenessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          tcpSocket:
+            port: 3000
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          tcpSocket:
+            port: 3000
