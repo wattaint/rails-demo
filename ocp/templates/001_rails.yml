@@ -48,8 +48,12 @@ spec:
           name: rails-tmp-volume
         - mountPath: /rails/log
           name: rails-log
+        - mountPath: /data
+          name: data
       volumes:
       - name: rails-tmp-volume
         emptyDir: {}
       - name: rails-log
+        emptyDir: {}
+      - name: data
         emptyDir: {}
