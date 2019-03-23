@@ -56,11 +56,12 @@ loadTemplates = ->
   fg.sync path.join TEMPLATE_DIR, '*.yml'
 
 main = (profile) ->
-  fsx.ensureDirSync OUTPUT_DIR
   profileConfig = loadProfile profile
+
+  fsx.ensureDirSync OUTPUT_DIR
   outputDir = path.join OUTPUT_DIR, profile
 
-  fsx.removeSync outputDir
+  fsx.removeSync path.join outputDir, "*"
   fsx.ensureDirSync outputDir
 
   templateFiles = loadTemplates()
@@ -71,7 +72,15 @@ main = (profile) ->
     writeFile outFile, str
 
 if require.main == module
+  aProfile = null
   program
-    .arguments('<profile>')
-    .action main
+    .arguments '<profile>'
+    .action (profile) ->
+      aProfile = profile
+      main profile
+
     .parse process.argv
+      
+  unless _.isString aProfile
+    make_red = (txt) -> colors.red txt
+    program.outputHelp make_red

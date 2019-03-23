@@ -1,22 +1,38 @@
 apiVersion: v1
-kind: Deployment
+kind: DeploymentConfig
 metadata:
+  labels:
+    app: rails
   name: rails
   namespace: <%- namespacePrefix %>-<%- envTier %>
 spec:
   replicas: 1
+  selector:
+    name: rails
   template:
     metadata:
       labels:
         editor: vscode
+        name: rails
     spec:
+      imagePullSecrets:
+      - name: gcr-docker-oauth
       containers:
       - name: rails
         image: <%- image %>
         imagePullPolicy: Always
+        command: ["rails"]
+        args: ["s", "-b", "0.0.0.0"]
         env:
         - name: RAILS_ENV
           value: development
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1024Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
         livenessProbe:
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -27,3 +43,13 @@ spec:
           periodSeconds: 30
           tcpSocket:
             port: 3000
+        volumeMounts:
+        - mountPath: /rails/tmp
+          name: rails-tmp-volume
+        - mountPath: /rails/log
+          name: rails-log
+      volumes:
+      - name: rails-tmp-volume
+        emptyDir: {}
+      - name: rails-log
+        emptyDir: {}

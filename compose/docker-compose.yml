@@ -1,7 +1,7 @@
 version: "3"
 services:
   rails:
-    image: rails-demo--rails
+    image: ${IMAGE:-rails-demo--rails}
     build: 
       context: ../rails
       dockerfile: ../Dockerfile-rails

@@ -1,10 +1,12 @@
-_eq_th_non_prod_default: &eq_th_non_prod_default
+_equator_dataplatform_default: &equator_dataplatform_default
   namespacePrefix: equator-dataplatform
-  image: us.gcr.io/tmn-th-equator-ci/acm-dp-rails-demo--dev
+  image: us.gcr.io/tmn-th-equator-ci/acm-dp--ocp--rails-demo--dev
 
-eq_th_non_prod:
+equator_dataplatform:
   staging: 
-    <<: *eq_th_non_prod_default
+    <<: *equator_dataplatform_default
+    rails_host: rails--equator-dataplatform-staging.cicd.ascendmoney-dev.internal
     
   qa:
-    <<: *eq_th_non_prod_default
+    <<: *equator_dataplatform_default
+    rails_host: rails--equator-dataplatform-qa.cicd.ascendmoney-dev.internal

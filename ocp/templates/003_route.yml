@@ -11,7 +11,7 @@ metadata:
     app: rails
     exposure: general
 spec:
-  host: rails-<%- siteName %>-<%- envTier %>.cicd.ascendmoney-dev.internal
+  host: <%- rails_host %>
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
