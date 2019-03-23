@@ -67,6 +67,8 @@ main = (profile) ->
   templateFiles = loadTemplates()
   outFiles = await Promise.mapSeries templateFiles, (templateFile) ->
     str = await ejs.renderFile templateFile, profileConfig
+    str = await ejs.render str, profileConfig
+
     outFile = path.join outputDir, path.basename(templateFile)
     console.log '  -> ', colors.green '.' + _.last(outFile.split __dirname)
     writeFile outFile, str
