@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Route
 metadata:
   name: rails
-  namespace: <%- namespacePrefix %>-<%- envTier %>
+  namespace: <%- namespacePrefix %>-<%- ENV_TIER %>
   annotations:
     haproxy.router.openshift.io/timeout: 4m
     openshift.io/host.generated: 'true'

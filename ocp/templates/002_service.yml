@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service          
 metadata:
   name: rails-http
-  namespace: <%- namespacePrefix %>-<%- envTier %>
+  namespace: <%- namespacePrefix %>-<%- ENV_TIER %>
 spec:
   ports:
     - name: http
